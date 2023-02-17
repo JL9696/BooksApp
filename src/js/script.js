@@ -1,8 +1,8 @@
 /* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
 
-{
+'use strict';
 
-  'use strict';
+{
   
   const select = {
     templateOf: {
@@ -11,14 +11,17 @@
     containerOf: {
       booksList: '.books-list',
       filters: '.filters',
+      bookImageID: 'data-id',
     },
     book: {
       image: '.books-list .book__image',
     },
+    form: '.filters',
   };
   
   const classFav = {
     favorite: 'favorite',
+    hidden: 'hidden',
   };
 
   const templates = {
@@ -49,7 +52,7 @@
       const thisBooksList = this;
       for (const book of this.data) {
         const ratingBgc = thisBooksList.determineRatingBgc(book.rating);
-        const ratingWidth = ratingBgc * 10;
+        const ratingWidth = book.rating * 10;
         book.ratingBgc = ratingBgc;
         book.ratingWidth = ratingWidth;
         const generatedHTML = templates.books(book);
